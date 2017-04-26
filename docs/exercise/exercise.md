@@ -12,7 +12,7 @@ Additional possibly features: Save your status (Maybe with an account), restart 
 
 ## Project confirmation
 
-< to be filled by lecturer>
+Confirmed. Have fun, D.König.
 
 
 ## Project delivery <to be filled by student>
