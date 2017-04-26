@@ -2,10 +2,13 @@
 
 ## Commit Proposal
 
-Matrikel Number: <to be filled by student>
+Matrikel Number: 14-468-615
 
 Project idea short description:
 
+It's exactly a game like "Who Wants to Be a Millionaire".
+Additional possibly features: Save your status (Maybe with an account), restart a new game
+, having 2-3 jokers and a countdown for each question. 
 
 ## Project confirmation
 
