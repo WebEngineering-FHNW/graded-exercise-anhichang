@@ -58,6 +58,7 @@ dependencies {
 
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.11.6"
     runtime "com.h2database:h2"
+    runtime 'org.grails.plugins:ajax-tags:1.0.0.RC1'
 
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.gebish:geb-core:1.1.1"

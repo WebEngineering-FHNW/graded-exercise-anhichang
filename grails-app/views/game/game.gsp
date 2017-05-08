@@ -4,6 +4,8 @@
     <title>
         Who Wants to Be a Millionaire?
     </title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <g:javascript library="jquery" />
 
     <style>
     body{
@@ -34,7 +36,6 @@
         font-size : 20px;
         border: 1px ;
         border-radius: 100px;
-        margin: 50px 50px 50px 50px;
         background-color: #ededed;
         margin: 0 auto;
 
@@ -70,7 +71,6 @@
 
 
     </style>
-
 </head>
 
 <body style="background-image:url('${resource(dir: "images/", file: "background.jpg")}')">
@@ -89,7 +89,7 @@
         <div class="col span-4" style="height: 45vh">
             <div class="row">
                 <div class="col span-12" style="height: 15vh">
-                    <img src="${resource(dir:"images", file: "5050.png") }" alt="50/50" style="width: 45vh;height:15vh;">
+                    <img src="${resource(dir:"images", file: "5050.png") }" alt="50/50" style="width: 20vh;height:15vh;">
                 </div>
             </div>
 
@@ -177,26 +177,30 @@
 <!-- Show answers -->
 <div class="row">
     <div class="col span-2" style="height: 10vh"></div>
-    <div class="col span-4" style="height: 10vh"><button type="button" onclick="alert('Hello world!')">${answer1}</button></div>
-    <div class="col span-4" style="height: 10vh"><button type="button" onclick="alert('Hello world!')">${answer2}</button></div>
+
+    <div class="col span-4" style="height: 10vh"><button type="button" onclick="validate(${answer1.correctIncorrect})" >${answer1.answer}</button></div>
+    <div class="col span-4" style="height: 10vh"><button type="button" onclick="validate(${answer2.correctIncorrect})" >${answer2.answer}</button></div>
+
     <div class="col span-2" style="height: 10vh"></div>
 </div>
 <div class="row">
     <div class="col span-2" style="height: 10vh"></div>
-    <div class="col span-4" style="height: 10vh"><button type="button" onclick="alert('Hello world!')">${answer3}</button></div>
-    <div class="col span-4" style="height: 10vh"><button type="button" onclick="alert('Hello world!')">${answer4}</button></div>
+
+   <div class="col span-4" style="height: 10vh"><button type="button" onclick="validate(${answer3.correctIncorrect})">${answer3.answer}</button></div>
+    <div class="col span-4" style="height: 10vh"><button type="button" onclick="validate(${answer4.correctIncorrect})">${answer4.answer}</button></div>
+
     <div class="col span-2" style="height: 10vh"></div>
 </div>
 
 
-<script type = "text/javascript">
+<script>
 
     var time;
     var ticker;
 
     function startTimer(secs){
         time = parseInt(secs)-1;
-        ticker = setInterval("tick()",1000);
+        ticker = setInterval('tick()',1000);
     }
 
     function tick() {
@@ -209,6 +213,17 @@
         }
         document.getElementById("timer").innerHTML = secs;
     }
+
+    function validate(bool) {
+
+        if(bool && time >0){
+            console.log("right");
+            <g:remoteFunction controller="game" action="incCounter"/>
+        }else{
+            console.log("wrong");
+        }
+    }
+
 </script>
 
 </body>

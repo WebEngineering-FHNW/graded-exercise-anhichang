@@ -3,13 +3,27 @@ package mvc
 class GameController {
 
     static String name = "Anhi"
-    static int timer = 60
+    static int status = 0
+    List<Question> questions = Question.findAll()
 
+    def playGame =  {
 
-    def playGame(){
+        Question currentQuestion = questions[status]
+        questions.findAll()
+        if (status < 10) {
+                render view: "game", model: [name    : name,
+                                             question: currentQuestion.question,
+                                             answer1 : currentQuestion.answer1,
+                                             answer2 : currentQuestion.answer2,
+                                             answer3 : currentQuestion.answer3,
+                                             answer4 : currentQuestion.answer4]
+            } else {
+                render view: "game"
+            }
+        questions.size()
+    }
 
-        List<Question> question = Question.getAll()
-
-        render view: "game", model: [name: name, timer:timer, question: question.first().question, answer1: question.first().answer1, answer2: question.first().answer2, answer3: question.first().answer3, answer4: question.first().answer4]
+    def incCounter = {
+        status++
     }
 }
