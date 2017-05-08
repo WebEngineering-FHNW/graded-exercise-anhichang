@@ -4,7 +4,7 @@ class GameController {
 
     static String name = "Anhi"
     static int status = 0
-    List<Question> questions = Question.findAll()
+    List<Question> questions = Question.findAll() // note that this is to be executed at Object construction time. You most likely want to do this in your action method.
 
     def playGame =  {
 
