@@ -1,5 +1,6 @@
 package mvc
 
+import grails.converters.JSON
 import grails.util.Environment
 
 class BootStrap {
