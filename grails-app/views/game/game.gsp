@@ -16,32 +16,33 @@
     }
     div {
         border: 1px black;
-        text-align: center;
     }
     div.col {
         float: left;
-        margin: 0;
-        box-sizing: border-box; /* calculate size including the border */
         text-align: center;
-
+        box-sizing: border-box;
     }
+
     div.row {
-        clear: both;
         border-width: 0;
+        vertical-align: center;
         text-align: center;
-        margin: 0 auto;
     }
-
-    button{
+    .formStyle{
+        position: fixed;
+        width: 16vw;
+        height: 5vh;
+    }
+    .buttons{
         width:80%;
         height:80%;
         font-size : 20px;
         border: 1px ;
         border-radius: 100px;
         background-color: #ededed;
-        margin: 0 auto;
-
+        margin: auto;
     }
+
     #timer{
         font-size: 120px;
         color: deepskyblue;
@@ -79,15 +80,10 @@
     div.span-12 { width: calc(100% * 12 / 12); }
 
     table {
-        align-content: center;
         font-family: arial, sans-serif;
-        border-collapse: collapse;
         width: 90%;
         background-color: #f2f2f2;
-        border-radius: 20px 20px 20px 20px;
     }
-    tr:nth-child(even) {background-color: #f2f2f2}
-
 
 
     </style>
@@ -96,13 +92,10 @@
 <body onload="javascript: status()">
 
 <!-- End und start game -->
-<div class="row">
+<div class="row" >
     <div class="col span-8" style="height: 5vh"></div>
-    <div class="col span-2" style="height: 5vh"><button id="startButton" type="button" onClick="startTimer(60)">Start game</button></div>
-    <div class="col span-2" style="height: 5vh"><button type="button" onclick="alert('Hello world!')">End game</button></div>
-    <g:form controller="game" action="playGame">
-        <g:submitButton name="Next Question"/>
-    </g:form>
+    <div class="col span-2" style="height: 5vh"><g:form class="formStyle" controller="game" action="playGame"><g:submitButton class="buttons" name="Next Question"/></g:form></div>
+    <div class="col span-2" style="height: 5vh"><g:submitButton id="startButton" onClick="startTimer(60)" class="buttons" name="Start"/></div>
 </div>
 <!-- Name -->
 <div class="row" >
@@ -113,7 +106,7 @@
         <div class="col span-4" style="height: 45vh">
             <div class="row">
                 <div class="col span-12" style="height: 15vh">
-                    <img src="${resource(dir:"images", file: "5050.png") }" alt="50/50" style="width: 45vh;height:15vh;">
+                    <img src="${resource(dir:"images", file: "5050.png") }" onclick="useJoker()" id="5050joker" alt="50/50" style="width: 25vw;height:15vh; border-radius: 20px 20px 20px 20px">
                 </div>
             </div>
 
@@ -130,7 +123,7 @@
 
         <div class="col span-4" style="height: 45vh">
 
-            <table style="height: 45vh">
+            <table style="height: 100%">
                 <tr id="row15">
                     <td>15</td>
                     <td>$1 Million</td>
@@ -202,16 +195,16 @@
 <div class="row" >
     <div class="col span-2" style="height: 10vh"></div>
 
-    <div  class="col span-4" style="height: 10vh;visibility: hidden"><button id="button1" type="button" onclick="validate(${answer1.correctIncorrect})">${answer1.answer}</button></div>
-    <div class="col span-4" style="height: 10vh;visibility: hidden"><button id="button2" type="button" onclick="validate(${answer2.correctIncorrect})" >${answer2.answer}</button></div>
+    <div  class="col span-4" style="height: 10vh;visibility: hidden"><button id="button1" class="buttons" type="button" onclick="validate(${answer1.correctIncorrect})">${answer1.answer}</button></div>
+    <div class="col span-4" style="height: 10vh;visibility: hidden"><button id="button2" class="buttons" type="button" onclick="validate(${answer2.correctIncorrect})" >${answer2.answer}</button></div>
 
     <div class="col span-2" style="height: 10vh"></div>
 </div>
 <div class="row">
     <div class="col span-2" style="height: 10vh"></div>
 
-   <div class="col span-4" style="height: 10vh ;visibility: hidden"><button id="button3" type="button" onclick="validate(${answer3.correctIncorrect})">${answer3.answer}</button></div>
-   <div class="col span-4" style="height: 10vh; visibility: hidden "><button id="button4" type="button" onclick="validate(${answer4.correctIncorrect})">${answer4.answer}</button></div>
+   <div class="col span-4" style="height: 10vh ;visibility: hidden"><button id="button3" class="buttons" type="button" onclick="validate(${answer3.correctIncorrect})">${answer3.answer}</button></div>
+   <div class="col span-4" style="height: 10vh; visibility: hidden "><button id="button4" class="buttons" type="button" onclick="validate(${answer4.correctIncorrect})">${answer4.answer}</button></div>
 
     <div class="col span-2" style="height: 10vh"></div>
 </div>
@@ -270,6 +263,128 @@
     function status() {
         console.log('row' + ${status})
         document.getElementById("row" + ${status}).style.backgroundColor = "lightblue";
+        if(${joker}){
+        document.getElementById("5050joker").style.visibility = 'hidden';}
+    }
+
+    function useJoker(){
+        var joker =${joker};
+        var count = 2;
+        if(!joker){
+            var x = Math.floor((Math.random() * 4) + 1);
+            var y = Math.floor((Math.random() * 4) + 1);
+            if(count !==0) {
+                while (x === y) {
+                    x++;
+                    if (x > 4) {
+                        x = 0
+                    }
+                }
+                var getBoolean;
+
+                switch (x) {
+
+                    case 1:
+                        getBoolean =${answer1.correctIncorrect}
+                        if (!getBoolean) {
+                            document.getElementById("button1").style.visibility = 'hidden';
+                            count++
+                        }else{
+                            x = x+1;
+                            count++;
+                            document.getElementById("button2").style.visibility = 'hidden';
+                        }
+                        break;
+                    case 2:
+                        getBoolean =${answer2.correctIncorrect}
+                        if (!getBoolean) {
+                            document.getElementById("button2").style.visibility = 'hidden';
+                            count++
+                        }else{
+                            document.getElementById("button3").style.visibility = 'hidden';
+                            x++;
+                            count++
+                        }
+                        break;
+                    case 3:
+                        getBoolean =${answer3.correctIncorrect}
+                        if (!getBoolean) {
+                            document.getElementById("button3").style.visibility = 'hidden';
+                            count++
+                        }else{
+                            document.getElementById("button4").style.visibility = 'hidden';
+                            x++;
+                            count++
+
+                        }
+                        break;
+                    case 4:
+                        getBoolean = ${answer4.correctIncorrect}
+                        if (!getBoolean) {
+                            document.getElementById("button4").style.visibility = 'hidden';
+                            count++;
+                        }
+                        else{
+                            document.getElementById("button1").style.visibility = 'hidden';
+                            x = x+1;
+                            count++;
+                        }
+                        break;
+                }
+                if(x===y){
+                    y++;
+                    if(y>4){
+                        y=0
+                    }
+                }
+                switch (y) {
+
+                    case 1:
+                        getBoolean = ${answer1.correctIncorrect}
+                        if (!getBoolean) {
+                            document.getElementById("button1").style.visibility = 'hidden';
+                            count++
+                        }else{
+                            document.getElementById("button2").style.visibility = 'hidden';
+                            count++
+                        }
+                        break;
+                    case 2:
+                        getBoolean = ${answer2.correctIncorrect}
+                        if (!getBoolean) {
+                            document.getElementById("button2").style.visibility = 'hidden';
+                            count++
+                        }else{
+                            document.getElementById("button3").style.visibility = 'hidden';
+                            count++
+                        }
+                        break;
+                    case 3:
+                        getBoolean = ${answer3.correctIncorrect}
+                        if (!getBoolean) {
+                            document.getElementById("button3").style.visibility = 'hidden';
+                            count++
+                        }else{
+                            document.getElementById("button4").style.visibility = 'hidden';
+                            count++
+                        }
+                        break;
+                    case 4:
+                        getBoolean = ${answer4.correctIncorrect}
+                        if (!getBoolean) {
+                            document.getElementById("button4").style.visibility = 'hidden';
+                        }else{
+                            document.getElementById("button1").style.visibility = 'hidden';
+                            count++
+                        }
+                        break;
+                }
+                document.getElementById("5050joker").style.visibility = 'hidden';
+            }
+            <g:remoteFunction controller="game" action="useJoker"/>
+        }else{
+            windows.alert("Joker is already used")
+        }
     }
 
 
