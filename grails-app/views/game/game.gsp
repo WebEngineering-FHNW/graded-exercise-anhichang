@@ -4,89 +4,11 @@
     <title>
         Who Wants to Be a Millionaire?
     </title>
+    <asset:stylesheet src="gameStyle.css"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <g:javascript library="jquery" />
-
-    <style>
-    body{
-        background-size: cover;
-        background-attachment: fixed;
-    }
-    div {
-        border: 1px black;
-    }
-    div.col {
-        float: left;
-        text-align: center;
-        box-sizing: border-box;
-    }
-
-    div.row {
-        border-width: 0;
-        vertical-align: center;
-        text-align: center;
-    }
-    .formStyle{
-        position: fixed;
-        width: 16vw;
-        height: 5vh;
-    }
-    .buttons{
-        width:80%;
-        height:80%;
-        font-size : 20px;
-        border: 1px ;
-        border-radius: 100px;
-        background-color: #ededed;
-        margin: auto;
-    }
-
-    #timer{
-        font-size: 120px;
-        color: deepskyblue;
-    }
-
-    body:before {
-
-        content: '';
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        background: url('${resource(dir: "images/", file: "background.jpg")}');
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        -webkit-filter: blur(5px);
-        -moz-filter: blur(5px);
-        -o-filter: blur(5px);
-        -ms-filter: blur(5px);
-        filter: blur(5px);
-        z-index: -9;
-    }
-    div.span-1  { width: calc(100% *  1 / 12); }
-    div.span-2  { width: calc(100% *  2 / 12); }
-    div.span-3  { background-color: #402878; width: calc(100% *  3 / 12); }
-    div.span-4  { width: calc(100% *  4 / 12); }
-    div.span-5  { width: calc(100% *  5 / 12); }
-    div.span-6  { background-color: #f1f1f1; width: calc(100% *  6 / 12); }
-    div.span-7  { width: calc(100% *  7 / 12); }
-    div.span-8  { width: calc(100% *  8 / 12); }
-    div.span-9  { width: calc(100% *  9 / 12); }
-    div.span-10 { width: calc(100% * 10 / 12); }
-    div.span-11 { width: calc(100% * 11 / 12); }
-    div.span-12 { width: calc(100% * 12 / 12); }
-
-    table {
-        font-family: arial, sans-serif;
-        width: 90%;
-        background-color: #f2f2f2;
-    }
-
-
-    </style>
 </head>
 
 <body onload="javascript: status()">
@@ -99,7 +21,7 @@
 </div>
 <!-- Name -->
 <div class="row" >
-    <div class="col span-12" style="height: 10vh"><output>${name}</output></div>
+    <div class="col span-12" id="nameOutput" style="height: 10vh"><output>${name}</output></div>
 </div>
 <!-- Table and Jokers -->
 <div class="row">
@@ -383,7 +305,7 @@
             }
             <g:remoteFunction controller="game" action="useJoker"/>
         }else{
-            windows.alert("Joker is already used")
+            window.alert("Joker is already used")
         }
     }
 

@@ -1,0 +1,46 @@
+
+body:before {
+    content: '';
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image:url("../images/background.jpg");
+    -webkit-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+    z-index: -11;
+}
+div.span-12 { width: calc(100% * 12 / 12); }
+h1{
+    font-size: 80px;
+    font-family: "Times New Roman", Times, serif;
+    color: deepskyblue;
+}
+form {
+    text-align: center;
+    margin-top: 20vh;
+    border-radius: 100px;
+}
+#nameInput{
+    width: 30vw;
+    height: 10vh;
+    font-size: 70px;
+    font-family: "Times New Roman", Times, serif;
+    color: deepskyblue;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+#submitName{
+    width: 30vw;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
+    color: deepskyblue;
+}
+
+div.col {
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+}
+

@@ -11,6 +11,7 @@ class Question {
     String toString() {
         return question + answer1.toString() + answer2.toString() + answer3.toString() + answer4.toString()
     }
+
     static constraints = {
 
     }
