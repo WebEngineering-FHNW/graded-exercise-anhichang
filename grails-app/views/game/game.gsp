@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-<head>
+<head onload="javascript: status()">
     <title>
         Who Wants to Be a Millionaire?
     </title>
@@ -11,41 +11,32 @@
     <g:javascript library="jquery" />
 </head>
 
-<body onload="javascript: status()">
+<body>
 
+<div id="header">
 <!-- End und start game -->
-<div class="row" >
-    <div class="col span-8" style="height: 5vh"></div>
-    <div class="col span-2" style="height: 5vh"><g:form class="formStyle" controller="game" action="playGame"><g:submitButton class="buttons" name="Next Question"/></g:form></div>
-    <div class="col span-2" style="height: 5vh"><g:submitButton id="startButton" onClick="startTimer(60)" class="buttons" name="Start"/></div>
+    <div class="col span-8" ></div>
+    <div class="col span-2" ><g:form class="formStyle" controller="game" action="playGame"><g:submitButton class="buttons" name="Next Question"/></g:form></div>
+    <div class="col span-2" ><g:submitButton id="startButton" onClick="startTimer(60)" class="buttons" name="Start"/></div>
 </div>
+
 <!-- Name -->
-<div class="row" >
-    <div class="col span-12" id="nameOutput" style="height: 10vh"><output>${name}</output></div>
-</div>
+<div>
+<div id="main-wrap">
+    <div class="col span-12" id="nameOutput">
+        <output>${name}</output>
+    </div>
+
 <!-- Table and Jokers -->
-<div class="row">
-        <div class="col span-4" style="height: 45vh">
-            <div class="row">
-                <div class="col span-12" style="height: 15vh">
-                    <img src="${resource(dir:"images", file: "5050.png") }" onclick="useJoker()" id="5050joker" alt="50/50" style="width: 25vw;height:15vh; border-radius: 20px 20px 20px 20px">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col span-12" style="height: 15vh">QQQ</div>
-            </div>
-
-            <div class="row">
-                <div class="col span-12" style="height: 15vh">3</div>
-            </div>
+    <div class="row">
+        <div class="col span-4">
+           <img src="${resource(dir:"images", file: "5050.png") }" onclick="useJoker()" id="joker" alt="50/50">
         </div>
     <!-- Timer -->
-    <div class="col span-4" style="height: 45vh"><p id="timer"></p></div>
+    <div class="col span-4"><p id="timer"></p></div>
+        <div class="col span-4">
 
-        <div class="col span-4" style="height: 45vh">
-
-            <table style="height: 100%">
+            <table>
                 <tr id="row15">
                     <td>15</td>
                     <td>$1 Million</td>
@@ -108,27 +99,39 @@
                 </tr>
             </table>
         </div>
+    </div>
 </div>
 <!-- Show question -->
 <div class="row" style="text-align:center">
-    <div  class="col span-12" id="textQuestion" style="height: 10vh ;font-size: 30px; text-align: center; visibility: hidden" >${question}</div>
+    <div  class="col span-12" id="textQuestion" >${question}</div>
 </div>
 <!-- Show answers -->
-<div class="row" >
-    <div class="col span-2" style="height: 10vh"></div>
+<div id="footer">
 
-    <div  class="col span-4" style="height: 10vh;visibility: hidden"><button id="button1" class="buttons" type="button" onclick="validate(${answer1.correctIncorrect})">${answer1.answer}</button></div>
-    <div class="col span-4" style="height: 10vh;visibility: hidden"><button id="button2" class="buttons" type="button" onclick="validate(${answer2.correctIncorrect})" >${answer2.answer}</button></div>
-
-    <div class="col span-2" style="height: 10vh"></div>
-</div>
 <div class="row">
-    <div class="col span-2" style="height: 10vh"></div>
+    <div class="col span-2"></div>
+    <div class="col span-4"><button id="button1" class="buttons" type="button" onclick="validate(${answer1.correctIncorrect})" >${answer1.answer}</button></div>
+    <div class="col span-4"><button id="button2" class="buttons" type="button" onclick="validate(${answer2.correctIncorrect})" >${answer2.answer}</button></div>
+    <div class="col span-2"></div>
+</div>
 
-   <div class="col span-4" style="height: 10vh ;visibility: hidden"><button id="button3" class="buttons" type="button" onclick="validate(${answer3.correctIncorrect})">${answer3.answer}</button></div>
-   <div class="col span-4" style="height: 10vh; visibility: hidden "><button id="button4" class="buttons" type="button" onclick="validate(${answer4.correctIncorrect})">${answer4.answer}</button></div>
+<div class="row">
+    <div class="col span-2"></div>
+    <div class="col span-4"><button id="button3" class="buttons" type="button" onclick="validate(${answer3.correctIncorrect})" >${answer3.answer}</button></div>
+    <div class="col span-4"><button id="button4" class="buttons" type="button" onclick="validate(${answer4.correctIncorrect})" >${answer4.answer}</button></div>
+    <div class="col span-2"></div>
+</div>
 
-    <div class="col span-2" style="height: 10vh"></div>
+</div>
+
+    <form style="display: none" action="/game/playGame" id="numberinput" method="post">
+        <div>
+            <input type="hidden" id="incNumber">
+        </div>
+        <div>
+            <input type="submit" value="Submit"/>
+        </div>
+    </form>
 </div>
 
 
@@ -159,12 +162,18 @@
 
         if(bool && time >0){
             window.alert("Correct");
-            time = 0;
-            <g:remoteFunction controller="game" action="incCounter"/>
+            var a = ${status}
+            console.log(a)
+            var newNum = (parseInt(a) + 1).toString()
+            console.log(newNum)
+            document.getElementById("numberinput").value =  newNum;
+            var form = document.getElementById("numberinput");
+            form.submit()
         }else{
             time = 0
             window.alert("Wrong\nStart again");
-            <g:remoteFunction controller="game" action="lost"/>
+            document.getElementById("numberinput").value =  0;
+            var form = document.getElementById("numberinput");
         }
     }
 
@@ -183,10 +192,12 @@
     }
 
     function status() {
-        console.log('row' + ${status})
-        document.getElementById("row" + ${status}).style.backgroundColor = "lightblue";
+        var aas = ${status}
+        var ee  = "row"+ aas
+        console.log(ee)
+        document.getElementById(ee).style.backgroundColor = "lightblue";
         if(${joker}){
-        document.getElementById("5050joker").style.visibility = 'hidden';}
+        document.getElementById("joker").style.visibility = 'hidden';}
     }
 
     function useJoker(){
@@ -205,7 +216,6 @@
                 var getBoolean;
 
                 switch (x) {
-
                     case 1:
                         getBoolean =${answer1.correctIncorrect}
                         if (!getBoolean) {
@@ -301,7 +311,7 @@
                         }
                         break;
                 }
-                document.getElementById("5050joker").style.visibility = 'hidden';
+                document.getElementById("joker").style.visibility = 'hidden';
             }
             <g:remoteFunction controller="game" action="useJoker"/>
         }else{

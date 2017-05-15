@@ -1,44 +1,58 @@
-
 div {
-    border: 1px black;
+    border: 2px solid transparent ;
+    text-align: center;
+
 }
+
 div.col {
     float: left;
-    text-align: center;
+    margin: 0;
     box-sizing: border-box;
 }
 
 div.row {
+    clear: both;
     border-width: 0;
-    vertical-align: center;
-    text-align: center;
 }
-.formStyle{
-    position: fixed;
-    width: 16vw;
-    height: 5vh;
+
+#header{
+    min-height: 10vh;
 }
+#main-wrap{
+    min-height: 50vh;
+}
+
+#footer{
+    min-height: 10vh;
+}
+
+#joker{
+    width: 25vw;
+    height:15vh;
+    border-radius: 20px 20px 20px 20px
+}
+
 .buttons{
-    width:80%;
-    height:80%;
+    width:15vw;
+    height:5vh;
     font-size : 20px;
     border: 1px ;
     border-radius: 100px;
-    background-color: #ededed;
+    background-color: #d1d1d1;
     margin: auto;
 }
 
 #timer{
-    font-size: 120px;
+    font-size: 130px;
     color: deepskyblue;
 }
+
 #nameOutput{
     font-size: 80px;
     color: deepskyblue;
 }
 
 body:before {
-
     content: '';
     position: fixed;
     width: 100vw;
@@ -66,5 +80,27 @@ div.span-12 { width: calc(100% * 12 / 12); }
 table {
     font-family: arial, sans-serif;
     width: 90%;
-    background-color: #f2f2f2;
+    background-color: #d1d1d1;
+}
+
+#textQuestion{
+    height: 10vh ;
+    font-size: 40px;
+    text-align: center;
+    visibility: hidden;
+
+}
+
+#button1{
+    visibility: hidden
+}
+
+#button2{
+    visibility: hidden
+}
+#button3{
+    visibility: hidden
+}
+#button4{
+    visibility: hidden
 }
