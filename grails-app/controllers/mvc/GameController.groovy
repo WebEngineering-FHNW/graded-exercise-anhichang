@@ -13,21 +13,11 @@ class GameController {
         {redirect(action:"playGame")}
     }
 
-    def playGame(int stat)  {
-        int newStatus
-
-        if (stat !=null) {
-             newStatus = stat
-        }
-        else{
-             newStatus = 0
-        }
+    def playGame(int status)  {
+        int newStatus = status
 
         List<Question> questions = Question.list()
         Question currentQuestion = questions[newStatus]
-
-        println "status = $newStatus"
-
         if (newStatus < 15) {
             render view: "game", model: [name    : name,
                                          question: currentQuestion.question,
@@ -39,20 +29,9 @@ class GameController {
                                          joker   : usedJoker
                                         ]
         } else {
-            println "status.....: = $status"
             usedJoker = false
             render view: "won",  model:[name:name]
         }
-    }
-
-    def won(){
-        render view: "won"
-    }
-
-    def lost() {
-        status = 0
-        usedJoker = false
-        render view: "won", model: [name    : name]
     }
 
     def useJoker(){

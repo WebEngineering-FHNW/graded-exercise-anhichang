@@ -1,23 +1,23 @@
 <!doctype html>
 <html>
-<head onload="javascript: status()">
+<head>
     <title>
         Who Wants to Be a Millionaire?
     </title>
-    <asset:stylesheet src="gameStyle.css"/>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <g:javascript library="jquery" />
+    <asset:stylesheet src="gameStyle.css"/>
+
 </head>
 
-<body>
+<body onload="javascript: status()">
 
 <div id="header">
 <!-- End und start game -->
     <div class="col span-8" ></div>
-    <div class="col span-2" ><g:form class="formStyle" controller="game" action="playGame"><g:submitButton class="buttons" name="Next Question"/></g:form></div>
-    <div class="col span-2" ><g:submitButton id="startButton" onClick="startTimer(60)" class="buttons" name="Start"/></div>
+    <div class="col span-4" ><g:submitButton id="startButton" onClick="startTimer(60)" class="buttons" name="Start"/></div>
 </div>
 
 <!-- Name -->
@@ -35,7 +35,6 @@
     <!-- Timer -->
     <div class="col span-4"><p id="timer"></p></div>
         <div class="col span-4">
-
             <table>
                 <tr id="row15">
                     <td>15</td>
@@ -123,13 +122,9 @@
 </div>
 
 </div>
-
-    <form style="display: none" action="/game/playGame" id="numberinput" method="post">
+    <form style="display:none" id="numberinput" name="myform" action="/game/playGame" method="post">
         <div>
-            <input type="hidden" id="incNumber">
-        </div>
-        <div>
-            <input type="submit" value="Submit"/>
+            <input type="hidden" id="status" name ="status">
         </div>
     </form>
 </div>
@@ -162,18 +157,17 @@
 
         if(bool && time >0){
             window.alert("Correct");
-            var a = ${status}
-            console.log(a)
-            var newNum = (parseInt(a) + 1).toString()
-            console.log(newNum)
-            document.getElementById("numberinput").value =  newNum;
+            var a = ${status};
+            var newNum = parseInt(a) + 1;
+            document.getElementById("status").value = newNum;
             var form = document.getElementById("numberinput");
-            form.submit()
+            form.submit();
         }else{
             time = 0
             window.alert("Wrong\nStart again");
             document.getElementById("numberinput").value =  0;
             var form = document.getElementById("numberinput");
+            form.submit()
         }
     }
 
@@ -192,13 +186,15 @@
     }
 
     function status() {
-        var aas = ${status}
-        var ee  = "row"+ aas
-        console.log(ee)
-        document.getElementById(ee).style.backgroundColor = "lightblue";
+
+        var status = "row" + (parseInt(${status}) + 1);
+
+        document.getElementById(status).style.backgroundColor = "lightblue";
         if(${joker}){
-        document.getElementById("joker").style.visibility = 'hidden';}
+            document.getElementById("5050joker").style.visibility = 'hidden';
+        }
     }
+
 
     function useJoker(){
         var joker =${joker};
