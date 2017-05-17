@@ -26,21 +26,19 @@ form {
     border-radius: 100px;
 }
 
-#nameInput{
-    width: 30vw;
-    height: 10vh;
-    font-size: 70px;
+#submitName{
     font-family: "Times New Roman", Times, serif;
     color: deepskyblue;
-    border-radius: 10px;
-    margin-bottom: 30px;
 }
 
-#submitName{
-    width: 30vw;
-    font-size: 30px;
-    font-family: "Times New Roman", Times, serif;
-    color: deepskyblue;
+input {
+    border: none;
+    font-size: 60px;
+    height: 150px;
+    width: 500px;
+    padding: 0;
+    border-radius: 70px;
+    background-color: #dedede;
 }
 
 div.col {

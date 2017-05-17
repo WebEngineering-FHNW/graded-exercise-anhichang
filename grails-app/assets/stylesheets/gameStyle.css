@@ -1,5 +1,5 @@
 div {
-    border: 2px solid transparent ;
+    border: 2px solid transparent;
     text-align: center;
 
 }
@@ -16,39 +16,40 @@ div.row {
     border-width: 0;
 }
 
-#header{
+#header {
     min-height: 10vh;
 }
-#main-wrap{
+
+#main-wrap {
     min-height: 50vh;
 }
 
-#footer{
+#footer {
     min-height: 10vh;
 }
 
-#joker{
+#joker {
     width: 25vw;
-    height:15vh;
+    height: 15vh;
     border-radius: 20px 20px 20px 20px
 }
 
-.buttons{
-    width:15vw;
-    height:5vh;
+.buttons {
+    width: 15vw;
+    height: 5vh;
     font-size: 100%;
-    border: 1px ;
+    border: 1px;
     border-radius: 100px;
     background-color: #d1d1d1;
     margin: auto;
 }
 
-#timer{
+#timer {
     font-size: 130px;
     color: deepskyblue;
 }
 
-#nameOutput{
+#nameOutput {
     font-size: 80px;
     color: deepskyblue;
 }
@@ -58,25 +59,62 @@ body:before {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background-image:url("../images/background.jpg");
+    background-image: url("../images/background.jpg");
     -webkit-filter: blur(5px);
     -ms-filter: blur(5px);
     filter: blur(5px);
     z-index: -9;
 }
 
-div.span-1  { width: calc(100% *  1 / 12); }
-div.span-2  { width: calc(100% *  2 / 12); }
-div.span-3  { background-color: #402878; width: calc(100% *  3 / 12); }
-div.span-4  { width: calc(100% *  4 / 12); }
-div.span-5  { width: calc(100% *  5 / 12); }
-div.span-6  { background-color: #f1f1f1; width: calc(100% *  6 / 12); }
-div.span-7  { width: calc(100% *  7 / 12); }
-div.span-8  { width: calc(100% *  8 / 12); }
-div.span-9  { width: calc(100% *  9 / 12); }
-div.span-10 { width: calc(100% * 10 / 12); }
-div.span-11 { width: calc(100% * 11 / 12); }
-div.span-12 { width: calc(100% * 12 / 12); }
+div.span-1 {
+    width: calc(100% * 1 / 12);
+}
+
+div.span-2 {
+    width: calc(100% * 2 / 12);
+}
+
+div.span-3 {
+    background-color: #402878;
+    width: calc(100% * 3 / 12);
+}
+
+div.span-4 {
+    width: calc(100% * 4 / 12);
+}
+
+div.span-5 {
+    width: calc(100% * 5 / 12);
+}
+
+div.span-6 {
+    background-color: #f1f1f1;
+    width: calc(100% * 6 / 12);
+}
+
+div.span-7 {
+    width: calc(100% * 7 / 12);
+}
+
+div.span-8 {
+    width: calc(100% * 8 / 12);
+}
+
+div.span-9 {
+    width: calc(100% * 9 / 12);
+}
+
+div.span-10 {
+    width: calc(100% * 10 / 12);
+}
+
+div.span-11 {
+    width: calc(100% * 11 / 12);
+}
+
+div.span-12 {
+    width: calc(100% * 12 / 12);
+}
 
 table {
     font-family: arial, sans-serif;
@@ -84,23 +122,9 @@ table {
     background-color: #d1d1d1;
 }
 
-#textQuestion{
-    height: 10vh ;
+#textQuestion {
+    height: 10vh;
     font-size: 40px;
     text-align: center;
     visibility: hidden;
-}
-
-#button1{
-    visibility: hidden
-}
-
-#button2{
-    visibility: hidden
-}
-#button3{
-    visibility: hidden
-}
-#button4{
-    visibility: hidden
 }
