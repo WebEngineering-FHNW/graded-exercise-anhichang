@@ -9,6 +9,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <g:javascript library="jquery"/>
     <asset:stylesheet src="gameStyle.css"/>
+
 </head>
 
 <body onload="javascript: latestStatus()">
