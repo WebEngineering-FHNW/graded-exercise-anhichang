@@ -13,11 +13,12 @@
     %{--input the name for playing--}%
 <div id="main-wrap">
     <div class="col span-12">
-        <form action="/game/start" method="post">
+        <form action="/game/playGame" method="post">
             <div>
-                <input id="nameInput" type="text" name="name" value="${name}" required="true"/>
+                <input id="userName" type="text" name="userName" value="${userName}" required="true"/>
+                <input type="hidden" id="status" type="text" name="status" value=0/>
+                <input type="hidden" id="useJoker" type="text" name="useJoker" value=false/>
             </div>
-
             <div>
                 <input id="submitName" type="submit" value="Submit"/>
             </div>

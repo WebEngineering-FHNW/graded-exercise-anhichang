@@ -22,7 +22,7 @@
 <!-- Name -->
 <div>
     <div id="main-wrap">
-        <div class="col span-12" id="nameOutput"><output>${name}</output></div>
+        <div class="col span-12" id="nameOutput"><output>${userName}</output></div>
         <!-- Table and Jokers -->
         <div class="row">
             <div class="col span-4">
@@ -119,27 +119,37 @@
         </div>
 
     </div>
-
+    <!-- For getting a new Question, called by Javascript -->
     <form style="display:none" id="numberInput" name="myform" action="/game/playGame" method="post">
         <div>
             <input type="hidden" id="status" name="status">
             <input type="hidden" id="useJoker" name="useJoker">
+            <input type="hidden" id="userName" name="userName" value="${userName}">
         </div>
     </form>
+
+    <!-- After wrong answer, the modal will appear and disappear automatically -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Wrong Answer, the game will start again</p>
+        </div>
+    </div>
+
 </div>
 
 <script>
     var sendJoker = ${joker};
     var time;
     var ticker;
-
+    <!-- when start button clicked, it will call startTimer -->
     function startTimer(secs){
         showQuestionButtons();
         hideStartButton();
         time = parseInt(secs) - 1;
         ticker = setInterval('tick()', 1000);
     }
-
+    <!-- to decrease the timer form 60 -->
     function tick() {
         var secs = time;
         if (secs > 0) {
@@ -150,7 +160,7 @@
         }
         document.getElementById("timer").innerHTML = secs;
     }
-
+    <!-- when choose the answer, it will valide the answer and get a new answer from controller, else start new game directly-->
     function validate(bool) {
 
         if (bool && time > 0) {
@@ -162,15 +172,18 @@
             form.submit();
 
         } else {
-            time = 0
-            window.alert("Wrong\nStart again");
-            document.getElementById("status").value = 0;
-            document.getElementById("useJoker").value = false;
-            var form = document.getElementById("numberInput");
-            form.submit()
+            time = 0;
+            f();
+            setTimeout(function(){
+                document.getElementById("status").value = 0;
+                document.getElementById("useJoker").value = false;
+                var form = document.getElementById("numberInput");
+                form.submit()
+            }, 3000)
+
         }
     }
-
+    <!-- all answer-button plus question are invisible, after clicking start button, all will appear -->
     function showQuestionButtons() {
         document.getElementById("button1").style.visibility = 'visible';
         document.getElementById("button2").style.visibility = 'visible';
@@ -178,11 +191,11 @@
         document.getElementById("button4").style.visibility = 'visible';
         document.getElementById("textQuestion").style.visibility = 'visible';
     }
-
+    <!-- startButton will disappear, afer klicking -->
     function hideStartButton() {
         document.getElementById("startButton").style.visibility = 'hidden';
     }
-
+    <!-- load the latest status, like "used" or "unused" joker -->
     function latestStatus() {
         var status = "row" + (parseInt(${status}) + 1);
         document.getElementById(status).style.backgroundColor = "lightblue";
@@ -190,8 +203,7 @@
             document.getElementById("joker").style.visibility = 'hidden';
         }
     }
-
-
+    <!-- after clicking the joker-button, 2 buttons will disappear -->
     function useJoker() {
         var joker = sendJoker;
         if (!joker) {
@@ -285,6 +297,17 @@
             window.alert("Joker is already used")
         }
     }
+    <!-- call modal-popup when wrong answer -->
+    var modal = document.getElementById('modal');
+    function f() {
+        modal.style.display = "block";
+    }
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+
 </script>
 
 </body>
