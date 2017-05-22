@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         Who Wants to Be a Millionaire?
     </title>
@@ -21,7 +22,6 @@
 </div>
 
 <!-- Name -->
-<div>
     <div id="main-wrap">
         <div class="col span-12" id="nameOutput"><output>${userName}</output></div>
         <!-- Table and Jokers -->
@@ -120,7 +120,7 @@
         </div>
 
     </div>
-    <!-- For getting a new Question, called by Javascript -->
+    <!-- For getting a Quiz, called by Javascript -->
     <form style="display:none" id="numberInput" name="myform" action="/game/playGame" method="post">
         <div>
             <input type="hidden" id="status" name="status">
@@ -137,12 +137,23 @@
         </div>
     </div>
 
-</div>
-
 <script>
+
+    // array for displaying after klicking the joker-buttton
+    const answers = [
+        { name : "button1", correct :  ${answer1.correctIncorrect} },
+        { name : "button2", correct :  ${answer2.correctIncorrect} },
+        { name : "button3", correct :  ${answer3.correctIncorrect} },
+        { name : "button4", correct :  ${answer4.correctIncorrect} }
+    ]
+    // take the right answer away from array
+    const wrongAnswers = answers.filter(function(e) { return e.correct === false })
+
+    var stat = ${status};
     var sendJoker = ${joker};
     var time;
     var ticker;
+
     <!-- when start button clicked, it will call startTimer -->
     function startTimer(secs){
         showQuestionButtons();
@@ -161,17 +172,16 @@
         }
         document.getElementById("timer").innerHTML = secs;
     }
+
     <!-- when choose the answer, it will valide the answer and get a new answer from controller, else start new game directly-->
     function validate(bool) {
 
         if (bool && time > 0) {
-            var stat = ${status};
             var newNum = parseInt(stat) + 1;
             document.getElementById("status").value = newNum;
             document.getElementById("useJoker").value = sendJoker;
             var form = document.getElementById("numberInput");
             form.submit();
-
         } else {
             time = 0;
             f();
@@ -181,9 +191,9 @@
                 var form = document.getElementById("numberInput");
                 form.submit()
             }, 3000)
-
         }
     }
+
     <!-- all answer-button plus question are invisible, after clicking start button, all will appear -->
     function showQuestionButtons() {
         document.getElementById("button1").style.visibility = 'visible';
@@ -192,124 +202,63 @@
         document.getElementById("button4").style.visibility = 'visible';
         document.getElementById("textQuestion").style.visibility = 'visible';
     }
+
     <!-- startButton will disappear, afer klicking -->
     function hideStartButton() {
         document.getElementById("startButton").style.visibility = 'hidden';
     }
+
     <!-- load the latest status, like "used" or "unused" joker -->
     function latestStatus() {
-        var status = "row" + (parseInt(${status}) + 1);
+        var status = "row" + (parseInt(stat) + 1);
         document.getElementById(status).style.backgroundColor = "lightblue";
         if (${joker}) {
             document.getElementById("joker").style.visibility = 'hidden';
         }
     }
+
     <!-- after clicking the joker-button, 2 buttons will disappear -->
     function useJoker() {
         var joker = sendJoker;
         if (!joker) {
-            var x = Math.floor((Math.random() * 4) + 1);
-            var y = Math.floor((Math.random() * 4) + 1);
-                while (x === y) {
-                    x++;
-                    if (x > 4) {
-                        x = 1;
-                    }
-                }
-            var check1 = true;
-            var check2 = true;
-            var count = 2;
-            while(count>0){
-                while(check1){
-
-                    if(1 === x && !${answer1.correctIncorrect}){
-                        document.getElementById("button1").style.visibility = 'hidden';
-                        check1 = false;
-                        count--;
-                    }
-
-                    if(2 === x && !${answer2.correctIncorrect}){
-                        document.getElementById("button2").style.visibility = 'hidden';
-                        check1 = false;
-                        count--;
-                    }
-
-                    if(3 === x && !${answer3.correctIncorrect}){
-                        document.getElementById("button3").style.visibility = 'hidden';
-                        check1 = false;
-                        count--;
-                    }
-
-                    if(4 === x && !${answer4.correctIncorrect}){
-                        document.getElementById("button4").style.visibility = 'hidden';
-                        check1 = false;
-                        count--;
-                    }
-
-                    x++;
-                    if(x>4){
-                        x = 1;
-                    }
-                }
-
-                if( x===y){
-                    y++;
-                    if(y>4){
-                        y= 1;
-                    }
-                }
-
-                while(check2){
-                    if(1 === y && !${answer1.correctIncorrect}){
-                        document.getElementById("button1").style.visibility = 'hidden';
-                        check2 = false;
-                        count--;
-                    }
-
-                    if(2 === y && !${answer2.correctIncorrect}){
-                        document.getElementById("button2").style.visibility = 'hidden';
-                        check2 = false;
-                        count--;
-                    }
-
-                    if(3 === y && !${answer3.correctIncorrect}){
-                        document.getElementById("button3").style.visibility = 'hidden';
-                        check2 = false;
-                        count--;
-                    }
-
-                    if(4 === y && !${answer4.correctIncorrect}){
-                        document.getElementById("button4").style.visibility = 'hidden';
-                        check2 = false;
-                        count--;
-                    }
-                    y++;
-                    if(y>4 || y===x){
-                        y=1;
-                    }
-                    if(y===x){
-                        y++;
-                    }
-                }
-            }
-                sendJoker = true;
+            var shuffled = shuffle(wrongAnswers);
+            shuffled.slice(0,1);
+            var first = shuffled[0].name;
+            var second = shuffled[1].name;
+            document.getElementById(first).style.visibility = 'hidden'
+            document.getElementById(second).style.visibility = 'hidden'
             document.getElementById("joker").style.visibility = 'hidden';
+            sendJoker = true;
         } else {
             window.alert("Joker is already used")
         }
     }
+
     <!-- call modal-popup when wrong answer -->
     var modal = document.getElementById('modal');
     function f() {
         modal.style.display = "block";
     }
+    <!-- disappear after klicking outside of model-popup -->
     window.onclick = function(event) {
         if (event.target === modal) {
             modal.style.display = "none";
         }
     }
 
-</script>
+    <!--https:/stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array -->
+    function shuffle(array) {
+        var counter = array.length;
+        while (counter > 0) {
+            var index = Math.floor(Math.random() * counter);
+            counter--;
+            var temp = array[counter];
+            array[counter] = array[index];
+            array[index] = temp;
+        }
+        return array;
+    }
 
+</script>
 </body>
 </html>

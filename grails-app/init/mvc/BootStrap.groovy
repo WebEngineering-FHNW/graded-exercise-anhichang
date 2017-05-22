@@ -1,6 +1,5 @@
 package mvc
 
-import grails.converters.JSON
 import grails.util.Environment
 
 class BootStrap {
@@ -103,77 +102,77 @@ class BootStrap {
         Answer quest15Answer3 = new Answer(answer: "Kellner" , correctIncorrect:true ).save(failOnError:true)
         Answer quest15Answer4 = new Answer(answer: "Landschaftsarchitekt" , correctIncorrect:false ).save(failOnError:true)
 
-        new Question(question: "Wenn das Wetter gut ist, wird der Bauer bestimmt den Eber, das Ferkel und...?",
+        new Quiz(question: "Wenn das Wetter gut ist, wird der Bauer bestimmt den Eber, das Ferkel und...?",
                 answer1:  quest1Answer1,
                 answer2:  quest1Answer2,
                 answer3:  quest1Answer3,
                 answer4:  quest1Answer4).save(failOnError: true)
-        Question question2 = new Question(question: "Was ist meist ziemlich viel?",
+        Quiz question2 = new Quiz(question: "Was ist meist ziemlich viel?",
                 answer1:quest2Answer1,
                 answer2:quest2Answer2,
                 answer3:quest2Answer3,
                 answer4:quest2Answer4,).save(failOnError: true)
-        Question question3 = new Question(question: "Wessen Genesung schnell voranschreitet, der erholt sich...?",
+        Quiz question3 = new Quiz(question: "Wessen Genesung schnell voranschreitet, der erholt sich...?",
                 answer1:  quest3Answer1,
                 answer2:  quest3Answer2,
                 answer3:  quest3Answer3,
                 answer4:  quest3Answer4).save(failOnError: true)
-        Question question4 = new Question(question: "Natürlich spielten musikalische Menschen auch im...?",
+        Quiz question4 = new Quiz(question: "Natürlich spielten musikalische Menschen auch im...?",
                 answer1: quest4Answer1,
                 answer2: quest4Answer2,
                 answer3: quest4Answer3,
                 answer4: quest4Answer4).save(failOnError: true)
-        Question question5 = new Question(question: "Wobei gibt es keine geregelten Öffnungszeiten?",
+        Quiz question5 = new Quiz(question: "Wobei gibt es keine geregelten Öffnungszeiten?",
                 answer1: quest5Answer1,
                 answer2: quest5Answer2,
                 answer3: quest5Answer3,
                 answer4: quest5Answer4).save(failOnError: true)
-        Question question6 = new Question(question: "Was war bereits seit Mai 1969 ein beliebtes Zahlungsmittel im europäischen Raum?",
+        Quiz question6 = new Quiz(question: "Was war bereits seit Mai 1969 ein beliebtes Zahlungsmittel im europäischen Raum?",
                 answer1: quest6Answer1,
                 answer2: quest6Answer2,
                 answer3: quest6Answer3,
                 answer4: quest6Answer4).save(failOnError: true)
-        Question question7 = new Question(question: "Malu Dreyer profitierte Anfang des Jahres von...?",
+        Quiz question7 = new Quiz(question: "Malu Dreyer profitierte Anfang des Jahres von...?",
                 answer1: quest7Answer1,
                 answer2: quest7Answer2,
                 answer3: quest7Answer3,
                 answer4: quest7Answer4).save(failOnError: true)
-        Question question8 = new Question(question: "Woraus besteht in der Regel eine Entourage?",
+        Quiz question8 = new Quiz(question: "Woraus besteht in der Regel eine Entourage?",
                 answer1: quest8Answer1,
                 answer2: quest8Answer2,
                 answer3: quest8Answer3,
                 answer4: quest8Answer4).save(failOnError: true)
-        Question question9 = new Question(question: "Was haben die Hollywood-Stars Gosling, Reynolds und Phillippe gemeinsam?",
+        Quiz question9 = new Quiz(question: "Was haben die Hollywood-Stars Gosling, Reynolds und Phillippe gemeinsam?",
                 answer1: quest9Answer1,
                 answer2: quest9Answer2,
                 answer3: quest9Answer3,
                 answer4: quest9Answer4).save(failOnError: true)
-        Question question10 = new Question(question: "Welche beiden Staaten einigten sich Ende 2012 über die Festsetzung eines Grenzverlaufs?",
+        Quiz question10 = new Quiz(question: "Welche beiden Staaten einigten sich Ende 2012 über die Festsetzung eines Grenzverlaufs?",
                 answer1: quest10Answer1,
                 answer2: quest10Answer2,
                 answer3: quest10Answer3,
                 answer4: quest10Answer4).save(failOnError: true)
-        Question question11 = new Question(question: "Seine drei Weltmeister-Titel erfuhr sich Sebastian Vettel mit Motoren von...?",
+        Quiz question11 = new Quiz(question: "Seine drei Weltmeister-Titel erfuhr sich Sebastian Vettel mit Motoren von...?",
                 answer1: quest11Answer1,
                 answer2: quest11Answer2,
                 answer3: quest11Answer3,
                 answer4: quest11Answer4).save(failOnError: true)
-        Question question12 = new Question(question: "Welcher General vertrieb im 19. Jahrhundert die Mexikaner aus dem heutigen US-Bundesstaat Texas?",
+        Quiz question12 = new Quiz(question: "Welcher General vertrieb im 19. Jahrhundert die Mexikaner aus dem heutigen US-Bundesstaat Texas?",
                 answer1: quest12Answer1,
                 answer2: quest12Answer2,
                 answer3: quest12Answer3,
                 answer4: quest12Answer4).save(failOnError: true)
-        Question question13 = new Question(question: "Der Text welches dieser berühmten Songs ist ganz offensichtlich an eine Prostituierte gerichtet?",
+        Quiz question13 = new Quiz(question: "Der Text welches dieser berühmten Songs ist ganz offensichtlich an eine Prostituierte gerichtet?",
                 answer1: quest13Answer1,
                 answer2: quest13Answer2,
                 answer3: quest13Answer3,
                 answer4: quest13Answer4).save(failOnError: true)
-        Question question14 = new Question(question: "Was soll in bestimmten Abständen nach der sogenannten ABCDE-Regel kontrolliert werden?",
+        Quiz question14 = new Quiz(question: "Was soll in bestimmten Abständen nach der sogenannten ABCDE-Regel kontrolliert werden?",
                 answer1: quest14Answer1 ,
                 answer2: quest14Answer2,
                 answer3: quest14Answer3,
                 answer4: quest14Answer4).save(failOnError: true)
-        Question question15 = new Question(question: "Wer sollte sich mit der Zwanzig nach vier-Stellung auskennen?",
+        Quiz question15 = new Quiz(question: "Wer sollte sich mit der Zwanzig nach vier-Stellung auskennen?",
                 answer1: quest15Answer1 ,
                 answer2: quest15Answer2,
                 answer3: quest15Answer3,

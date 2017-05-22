@@ -1,6 +1,6 @@
 package mvc
 
-class Question {
+class Quiz {
 
     String question
     Answer answer1

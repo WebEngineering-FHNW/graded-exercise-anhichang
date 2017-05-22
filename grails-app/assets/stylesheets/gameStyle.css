@@ -45,7 +45,7 @@ div.row {
 }
 
 #timer {
-    font-size: 130px;
+    font-size: 160px;
     color: deepskyblue;
 }
 
@@ -123,6 +123,7 @@ table {
     border-radius: 10px;
     background-color: #e4e4e4;
 }
+
 table tr:first-child td:first-child {
     border-top-left-radius: 10px;
 }
@@ -145,11 +146,9 @@ table tr:last-child td:last-child {
     visibility: hidden;
 }
 
-
 #button1, #button2, #button3, #button4 {
     visibility: hidden
 }
-
 
 .modal {
     display: none;
@@ -160,12 +159,11 @@ table tr:last-child td:last-child {
     top: 0;
     width: 100%;
     height: 100%;
-
 }
 
 .modal-content {
     border-radius: 10px;
-    background-color: #ffffff;
+    background-color: #b6b6b6;
     margin: auto;
     font-size: 50px;
     padding: 20px;
@@ -185,4 +183,76 @@ table tr:last-child td:last-child {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+    #textQuestion {
+        height: 10vh;
+        font-size: 15px;
+        text-align: center;
+        visibility: hidden;
+    }
+
+    .buttons {
+        width: 100px;
+        height: 5vh;
+        font-size: 50%;
+        border: 1px;
+        border-radius: 100px;
+        background-color: #E4E4E4;
+        margin: auto;
+    }
+
+    #timer {
+        font-size: 100px;
+        color: deepskyblue;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        width: 80%;
+        border-collapse: collapse;
+        border-radius: 10px;
+        background-color: #e4e4e4;
+        font-size: 50%;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 50%;
+    }
+
+    .modal-content {
+        border-radius: 10px;
+        background-color: #b6b6b6;
+        margin: auto;
+        font-size: 10px;
+        padding: 20px;
+        border: 1px solid #ffffff;
+        width: 40%;
+    }
+
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
 }
