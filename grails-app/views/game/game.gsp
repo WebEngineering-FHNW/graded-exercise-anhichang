@@ -220,18 +220,15 @@
     <!-- after clicking the joker-button, 2 buttons will disappear -->
     function useJoker() {
         var joker = sendJoker;
-        if (!joker) {
-            var shuffled = shuffle(wrongAnswers);
-            shuffled.slice(0,1);
-            var first = shuffled[0].name;
-            var second = shuffled[1].name;
-            document.getElementById(first).style.visibility = 'hidden'
-            document.getElementById(second).style.visibility = 'hidden'
-            document.getElementById("joker").style.visibility = 'hidden';
-            sendJoker = true;
-        } else {
-            window.alert("Joker is already used")
-        }
+        var shuffled = shuffle(wrongAnswers);
+        shuffled.slice(0,1);
+        var first = shuffled[0].name;
+        var second = shuffled[1].name;
+        document.getElementById(first).style.visibility = 'hidden'
+        document.getElementById(second).style.visibility = 'hidden'
+        document.getElementById("joker").style.visibility = 'hidden';
+        sendJoker = true;
+
     }
 
     <!-- call modal-popup when wrong answer -->
