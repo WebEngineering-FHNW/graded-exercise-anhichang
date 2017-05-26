@@ -1,5 +1,6 @@
 package mvc
 
+import geb.spock.GebSpec
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -16,6 +17,7 @@ class GameControllerSpec extends Specification {
 
     def setup() {
         gameController = new GameController()
+
     }
 
     def cleanup() {
@@ -30,26 +32,7 @@ class GameControllerSpec extends Specification {
         view == '/game/start_page'
     }
 
-    @Unroll
-    void "call gamePage"() {
-        given:
 
-        Answer quest1Answer1 = new Answer(answer: "...einen draufmachen" , correctIncorrect: false)
-        Answer quest1Answer2 = new Answer(answer: "...die Nacht durchzechen" , correctIncorrect: false)
-        Answer quest1Answer3 = new Answer(answer: "...die Sau rauslassen" , correctIncorrect: true)
-        Answer quest1Answer4 = new Answer(answer: "...auf die Kacke hauen", correctIncorrect:false)
-        Quiz q = new Quiz(question: "Wenn das Wetter gut ist, wird der Bauer bestimmt den Eber, das Ferkel und...?",quest1Answer1:quest1Answer1, quest1Answer2: quest1Answer2, quest1Answer3: quest1Answer3, quest1Answer4:quest1Answer4)
-
-        model.question == q.question
-        model.answer1 == q.answer1
-        model.answer2 == q.answer2
-        model.answer3 == q.answer3
-        model.answer4 == q.answer4
-        when:
-        gameController.playGame("name", 0, false)
-        then:
-        view == '/game/playGame'
-    }
 
     @Unroll
     void "win the game"() {
@@ -64,14 +47,6 @@ class GameControllerSpec extends Specification {
         view == '/game/won'
     }
 
-    @Unroll
-    void "redirect to playGame"() {
-        given:
-        params.userName = 'name'
 
-        when:
-        gameController.playGame()
-        then:
-        view == '/game/playGame'
-    }
+
 }
