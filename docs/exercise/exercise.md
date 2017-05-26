@@ -21,14 +21,14 @@ How to start the project: (if other than `grailsw run-app`)
 
 How to test the project:  (if other than `grailsw test-app`)
 
-Project description:      (if other than `/index.html`)
+Project description: /Users/anhichang/Desktop/est/graded-exercise-anhichang/src/main/resources/public/DescriptionHtml.html
 
-External contributions:
+External contributions:  
+ <!--https:/stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array -->
 
 Other comments: 
-
-I'm particular proud of:
-
+I'm particular proud of: i've learnt a lot of html and js and about the framework grails
+Used a lot fo javascript my project.
 
 ## Project grading 
 
