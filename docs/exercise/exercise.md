@@ -32,4 +32,34 @@ Used a lot fo javascript my project.
 
 ## Project grading 
 
-< to be filled by lecturer>
+Index.html given and valid html. Extensive use of <br> is not perfect.
+
+The application works nicely (and is fun to play).
+
+Functionality is a user-specific workflow with conversational state and 
+elements of randomness. It can be used by multiple users. 
+The UI is interactive, form-based. The conversation state
+needs to keep track of the jokers. It is stored on the client. 
+The quiz content is stored in the database.
+
+Engineering:
+- the commit log is well factored and shows a substantial effort over many days
+- some basic tests are there
+- comments are fine
+- Web MVC is well used
+- interesting dynamic JavaScript in combo with Grails Server Pages
+
+I award some extra points for the technical challenge (GSP-JavaScript combo)
+and the obviously visible extra effort that went into the solution.
+
+Congratulations!
+This is a professional-grade application that you can be really proud of.
+You have set yourself a challenging goal and did pursue it despite the difficulties.
+This is the hallmark of an engineer.
+
+Grade: 6.0
+
+
+
+
+
